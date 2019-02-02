@@ -27,12 +27,30 @@ RUN \
   yum install -y epel-release && \
   yum update -y && \
 # Install dependencies and clean YUM cache
-  yum install -y iptables autoconf.noarch automake file gcc libtool patch quilt git make rpm-build zlib-devel pam-devel openssl openssl-devel lzo-devel lz4-devel.x86_64 net-tools cmake.x86_64 && \
+  yum install -y \
+    iptables \
+    autoconf.noarch \
+    automake file \
+    gcc \
+    libtool \
+    patch \
+    quilt \
+    git \
+    make \
+    rpm-build \
+    zlib-devel \
+    pam-devel \
+    openssl \
+    openssl-devel \
+    lzo-devel \
+    lz4-devel.x86_64 \
+    net-tools \
+    cmake.x86_64 && \
   yum clean all && \
-  cd ${OPENVPN_VERSION}/ && \
 # Build OpenVPN
+  cd ${OPENVPN_VERSION}/ && \
   autoreconf -i -v -f && \
-  ./configure && \
+  sh ./configure && \
   make && \
   make install && \
 # Remove working directory
